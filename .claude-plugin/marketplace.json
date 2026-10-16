@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "crystacode-toolbox",
+  "description": "Public AI tools, skills, and plugins provided by CrystaCode",
+  "owner": {
+    "name": "CrystaCode",
+    "email": "info@crystacode.ai"
+  },
+  "plugins": [
+    {
+      "name": "crystacode-prototyper",
+      "description": "Generates pixel-perfect 1:1 HTML/CSS/JS prototype replicas of shared browser pages or builds interactive prototypes from prompt descriptions, then finalizes them into production-ready assets.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/prototyper"],
+      "category": "development"
+    }
+  ]
+}

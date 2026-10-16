@@ -1,0 +1,10 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if you later add an npm package for distribution)
+node_modules/
