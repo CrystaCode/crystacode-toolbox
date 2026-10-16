@@ -1,7 +1,5 @@
 # crystacode-toolbox
 
-[![skills.sh](https://skills.sh/b/CrystaCode/crystacode-toolbox)](https://skills.sh/CrystaCode/crystacode-toolbox)
-
 The public AI tools, skills, and plugins provided by CrystaCode
 
 ## Skills

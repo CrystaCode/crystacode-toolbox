@@ -25,6 +25,8 @@ Each skill lives in `skills/<name>/` with a `SKILL.md` (frontmatter `name` match
 
 ## prototyper
 
+[![skills.sh](https://skills.sh/b/CrystaCode/crystacode-toolbox/prototyper)](https://skills.sh/CrystaCode/crystacode-toolbox/prototyper)
+
 Turns a page or an idea into an interactive, production-ready HTML/CSS/JS prototype. Pure HTML5, CSS3 and ES6 — no frameworks, no build tools.
 
 ### Two modes
