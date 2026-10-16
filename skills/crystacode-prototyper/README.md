@@ -36,7 +36,7 @@ skills/prototyper/
 ### Install with the skills CLI (recommended)
 
 ```bash
-npx skills add CrystaCode/crystacode-prototyper
+npx skills add CrystaCode/crystacode-toolbox/tree/main/skills/crystacode-prototyper
 ```
 
 The installer lets you pick which agents to install the skill on.
@@ -106,7 +106,7 @@ component_name: "AdminAgentsManagement"
 1. **Publish the repo publicly on GitHub.** The skills CLI installs directly from any public GitHub repo:
 
    ```bash
-   npx skills add CrystaCode/crystacode-prototyper
+   npx skills add CrystaCode/crystacode-toolbox/tree/main/skills/crystacode-prototyper
    ```
 
 2. **(Optional) npm package** — if you want `npx`-based distribution under your own package name, add a `package.json` with a `bin` entry and `npm publish`.
