@@ -1,6 +1,6 @@
 ---
 name: prototyper
-description: Generates a pixel-perfect 1:1 HTML/CSS/JS prototype replica of a shared browser page or URL, or builds an interactive prototype from a prompt description, automatically triggers previews, handles iterative modifications, and produces clean production-ready final assets. Use when the user asks to clone, replicate, or prototype a UI, create a component or page mockup from a description, preview a prototype in the integrated browser, or finalize a prototype into production-ready code.
+description: Creates interactive HTML/CSS/JS prototypes — either a pixel-perfect 1:1 clone of a shared browser page or URL, or a from-scratch UI built from a text description — with live preview, iterative changes, and a production-ready final version. ALWAYS use this skill whenever the user wants to create, build, make, design, mock up, or sketch a prototype, mockup, wireframe, demo UI, landing page, dashboard, component, or screen, or says things like "I want to create a prototype", "prototype this", "clone this page", "replicate this URL/website", "turn this idea into a UI", or "finalize the prototype". Use it even if the user does not mention the word "skill" or "prototyper".
 argument-hint: 'A description of the UI, or a URL/shared browser page to replicate, e.g., "https://example.com/dashboard" or "A dark-themed analytics card"'
 user-invocable: true
 ---
@@ -14,7 +14,7 @@ You are an expert frontend UI prototyper. Generate interactive web prototypes, a
 Identify which pathway applies **before writing any code**. The two modes produce very different artifacts, so getting this wrong wastes the whole prototype:
 
 - **Browser Clone Mode (EXACT 1:1 REPLICA — ABSOLUTE MANDATE)** → [BROWSER-CLONE-MODE.md](BROWSER-CLONE-MODE.md).
-  A page is open/shared in the integrated browser, or a URL was provided. Nothing may change: no added components, no missed components, no altered styles. Extract the truth from the live page — never re-invent it by eye.
+  A page is open/shared in the integrated browser, or a URL was provided (if only a URL is given, load it with the Playwright MCP). Nothing may change: no added components, no missed components, no altered styles. Extract the truth from the live page — never re-invent it by eye.
 - **Prompt Mode** → [PROMPT-MODE.md](PROMPT-MODE.md).
   No browser page or URL is shared. Design the full UI from scratch based on the user's description, requirements, and feature list.
 
@@ -37,7 +37,7 @@ The full 5-step workflow (build → mandatory live diff loop → approval → mo
 
 - **description** *(optional if a page is already shared in the browser, required otherwise)* — the UI to generate, or instructions on what to adapt/prototype from the shared browser page.
 - **component_name** — the meaningful base PascalCase (or kebab-case) name used for the prototype folder and generated files (e.g., `LandingPage`, `PricingCard`). Must be descriptive and specific.
-- **url** *(optional)* — a URL to open in the integrated browser. If omitted and the user has already opened and shared a tab, inspect that active shared page.
+- **url** *(optional)* — a URL to clone. If it is the only input, open and inspect it with the Playwright MCP (`browser_navigate`, `browser_take_screenshot`, `browser_evaluate`). If omitted and the user has already opened and shared a tab, inspect that active shared page.
 - **modifications** *(optional)* — requested adjustments during the feedback loop.
 
 ## Outputs
@@ -58,7 +58,7 @@ The full 5-step workflow (build → mandatory live diff loop → approval → mo
 
 ```markdown
 @prototyper
-description: "A dark-themed pricing card component with a monthly/yearly toggle."
+description: Creates interactive HTML/CSS/JS prototypes — either a pixel-perfect 1:1 clone of a shared browser page or URL, or a from-scratch UI built from a text description — with live preview, iterative changes, and a production-ready final version. ALWAYS use this skill whenever the user wants to create, build, make, design, mock up, or sketch a prototype, mockup, wireframe, demo UI, landing page, dashboard, component, or screen, or says things like "I want to create a prototype", "prototype this", "clone this page", "replicate this URL/website", "turn this idea into a UI", or "finalize the prototype". Use it even if the user does not mention the word "skill" or "prototyper".
 component_name: "PricingCard"
 ```
 
@@ -66,7 +66,7 @@ component_name: "PricingCard"
 
 ```markdown
 @prototyper
-description: "Create an interactive prototype for the page I have open and shared in the integrated browser."
+description: Creates interactive HTML/CSS/JS prototypes — either a pixel-perfect 1:1 clone of a shared browser page or URL, or a from-scratch UI built from a text description — with live preview, iterative changes, and a production-ready final version. ALWAYS use this skill whenever the user wants to create, build, make, design, mock up, or sketch a prototype, mockup, wireframe, demo UI, landing page, dashboard, component, or screen, or says things like "I want to create a prototype", "prototype this", "clone this page", "replicate this URL/website", "turn this idea into a UI", or "finalize the prototype". Use it even if the user does not mention the word "skill" or "prototyper".
 component_name: "AgentManagementDashboard"
 ```
 
@@ -75,7 +75,7 @@ component_name: "AgentManagementDashboard"
 ```markdown
 @prototyper
 url: "https://example.com/admin/agents"
-description: "Create an interactive prototype replicating the agent management table with filtering, search, and status badges."
+description: Creates interactive HTML/CSS/JS prototypes — either a pixel-perfect 1:1 clone of a shared browser page or URL, or a from-scratch UI built from a text description — with live preview, iterative changes, and a production-ready final version. ALWAYS use this skill whenever the user wants to create, build, make, design, mock up, or sketch a prototype, mockup, wireframe, demo UI, landing page, dashboard, component, or screen, or says things like "I want to create a prototype", "prototype this", "clone this page", "replicate this URL/website", "turn this idea into a UI", or "finalize the prototype". Use it even if the user does not mention the word "skill" or "prototyper".
 component_name: "AdminAgentsManagement"
 ```
 
