@@ -14,7 +14,7 @@ npx skills add CrystaCode/crystacode-toolbox --skill prototyper
 
 ```bash
 claude plugin marketplace add CrystaCode/crystacode-toolbox
-claude plugin install crystacode-prototyper@crystacode-toolbox
+claude plugin install prototyper@crystacode-toolbox
 ```
 
 ## Contributing
