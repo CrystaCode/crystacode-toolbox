@@ -1,6 +1,6 @@
 # Browser Clone Mode (Exact 1:1 Replica — Absolute Mandate)
 
-Applies when a page is opened/shared in the integrated browser, or a URL is provided (a bare URL is loaded with the Playwright MCP — see below).
+Applies when a page is opened/shared in the integrated browser, or a URL is provided (a bare URL is loaded with the Playwright MCP or another available browser tool — see below).
 
 ## The 1:1 mandate
 
@@ -77,3 +77,5 @@ Also call `screenshot_page(pageId: sharedPageId)` to retain the visual reference
 - **`{component_name}.js`**: implement interactive triggers (toggles, modal opens/closes, button states).
 
 Then continue with the mandatory diff loop defined in [WORKFLOW.md](WORKFLOW.md) Step 2.
+
+Fidelity wins: use the page's exact values even where they differ from the default tokens in [DESIGN-TOKENS.md](DESIGN-TOKENS.md). Put extracted styles in `{component_name}.css` where practical; keep scripts out of the HTML.

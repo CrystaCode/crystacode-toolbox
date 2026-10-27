@@ -1,6 +1,6 @@
-# CrystaCode Styling Standards & Design System Tokens (Mandatory)
+# CrystaCode Styling Standards & Design System Tokens (Default)
 
-All prototypes must follow these design standards and token conventions.
+These are the default design standards and token conventions. Apply them unless the user supplies or names their own design system, in which case use the user's system instead (map its fonts, colors, spacing and radii to CSS custom properties in the same way). In Browser Clone Mode, exact fidelity to the shared page takes priority over these defaults.
 
 ## 1. Decimal rem scaling engine (`1rem = 10px`)
 
