@@ -2,127 +2,70 @@
 
 # Prototyper
 
-**Prototype before you implement.**
-
-Describe a UI, or share a page you already have, and get a light, standalone HTML, CSS and JS
-prototype to review and change freely. Implement it in your app only when you are happy with it.
+**An agent skill that turns a plain-language request, or a page you share, into a working UI prototype in its own folder, so your app stays untouched.**
 
 [![skills.sh](https://skills.sh/b/CrystaCode/crystacode-toolbox/prototyper)](https://skills.sh/CrystaCode/crystacode-toolbox/prototyper)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[Install](#installation) · [How it works](#how-it-works) · [Two ways to start](#two-ways-to-start) · [Usage](#usage)
-
-![Prototyper in one scene: share a page, get a prototype, check it, change it](../../docs/prototyper/images/prototyper-demo.gif)
+[The problem](#a-tiny-ui-question-should-not-cost-a-whole-app) · [The fix](#a-prototype-lane-next-to-your-app) · [Get started](#get-started-in-four-steps)
 
 </div>
 
----
+<details open>
+<summary><h2>A tiny UI question should not cost a whole app</h2></summary>
 
-## Quick start
+Take the simplest page you own: a **login page**. You want to see it a few different ways. The button in another spot. An inline error instead of a pop-up. A darker style. Four or five variations, side by side.
 
-```bash
-npx skills add CrystaCode/crystacode-toolbox --skill prototyper
-```
+That is a ten-minute question. In a real app, it rarely is.
 
-Then, in your agent chat:
+### What it actually takes
 
-```markdown
-/prototyper I want a dark-themed pricing card with a monthly/yearly toggle.
-```
+- **Full-stack overhead.** To look at one error state you open the component, its styles, the form logic and the routing. You wire up fake auth responses, mock routes or seed data, just to make the page fail on purpose. A missing dependency or a framework quirk can turn a color check into an afternoon.
+- **Tokens burned on trivial tweaks.** Ask an AI agent to move a button and it reads, searches and edits across your whole stack. You pay for a lot of context that has nothing to do with the question, and then you ask for variation number two.
+- **Slow loops.** Every variation waits on a rebuild or a reload, and then you walk the flow again: open the page, sign in wrong on purpose, look, go back. Repeat for every idea.
+- **A diff to review and a mess to undo.** Variation three was the winner, so now you revert the other two.
 
-A standalone prototype appears in `prototype/pricing-card/`. Open it, ask for changes, and implement it in your app only when you are happy.
+### You have felt this
 
-## Why Prototyper
+If you have ever opened a project to nudge one button and closed it an hour later with a half-built mock API, you know exactly what this is. You were not trying to build a feature. You were trying to **look at** one.
 
-When an AI agent edits your real codebase to try a UI idea, you get a multi-file diff to review,
-a change to undo if you do not like it, and nothing to show your team until the work is done.
+The slow part was never the design. It was everything around it.
 
-**Prototyper adds a safe step in between.** It writes a standalone prototype into its own folder:
+</details>
 
-```text
-prototype/agent-dashboard/
-├── agent-dashboard.html
-├── agent-dashboard.css
-└── agent-dashboard.js
-```
+<details open>
+<summary><h2>A prototype lane next to your app</h2></summary>
 
-Open it, click through it, ask for changes, and show it to your team. Nothing in your app has changed.
-When you approve it, ask Prototyper to implement it in your project. It confirms the address with you first and builds it in your project's own structure.
+**Prototyper** is a lightweight prototyping skill for your AI coding agent. Describe a UI, or share a page you already have, and it builds the UI as three small, standalone files (HTML, CSS and JavaScript) in their own folder, outside your app. Open the file in a browser, ask for changes in plain language, and compare variations without a build, a route or a mock in sight.
 
-|  | Edit the app directly | Prototype first |
+![Clone Mode: click Share with Agent in the editor's browser, run /prototyper, and get a prototype of the shared login page next to the untouched original](../../docs/prototyper/images/login-clone-demo.gif)
+
+*Click Share with Agent in the editor's browser, run `/prototyper`, and the agent clones the page you shared. Changes go to the prototype only; your app stays untouched. An illustration built from a real login prototype, not a screen recording.*
+
+### The difference
+
+| | Changing the real app | With Prototyper |
 | --- | --- | --- |
-| Where changes land | In your app files | In `prototype/` only |
-| How you review | Read a diff | Open one page |
-| Reject an idea | Revert changes | Delete a folder |
-| Fidelity to an existing page | Rebuilt from source | Read from the live page and compared |
+| What the agent touches | Components, styles, state, routes, mock data | One folder with three small files |
+| Token use | High: it reads and edits across the stack for every tweak | Much lower: it reads and rewrites three small files |
+| Iteration speed | Rebuild or reload the app, then re-walk the flow | Near-instant: reload one HTML file |
+| Risk | Changes land in your codebase and may need reverting | Nothing in your app changes until you ask |
+
+> *A relative comparison of what the agent has to read, edit and wait for, not a benchmark. Actual savings depend on your project and agent.*
 
 ![Direct edit versus prototype first: review the idea before you review the diff](../../docs/prototyper/images/11-before-after-workflow.png)
 
-**Use it when** you want to explore, redesign or rebuild a page, build a new component from a description,
-or show a change before building it.
-**Skip it when** the change is a one-line style tweak or has no UI.
+### The login page, again
 
-Prototyper is an agent skill, so it works in any AI agent that supports skills.
+Every variation below is one plain-language request, and every one lives in the same three files.
 
-## How it works
+![One login page and five variations: button placement, error state and two styling changes, each requested in a single sentence](../../docs/prototyper/images/login-variations.png)
 
-```mermaid
-flowchart LR
-    A[Describe the UI or share a page] --> B[Ask for a prototype]
-    B --> C[Prototyper writes prototype/Name/ with HTML, CSS, JS]
-    C --> D[Preview opens]
-    D --> E{Happy?}
-    E -- Change something --> C
-    E -- Approve --> F[Confirm the address, then implement it in your project]
-```
+### Two ways to start
 
-1. **Start.** Describe the UI you want, or share a page you already have open.
-2. **Ask for a prototype.** Type `/prototyper` followed by what you want, in plain language.
-3. **Prototyper builds it.** Three plain files appear in a new, meaningfully named folder under `prototype/`.
-4. **Review and iterate.** Preview it, ask for changes in plain language, repeat.
-5. **Implement it.** When you approve, ask Prototyper to implement it in your project. It confirms where it should go, then builds it in your stack (for example a Blazor component). See [Implementing the prototype](#implementing-the-prototype-in-your-app).
+**Prompt Mode: say what you want.** There is no page to copy: a new component, a screen that does not exist yet, a quick concept for your team. You do not need to share a page or a URL.
 
-## Two ways to start
-
-Prototyper picks its mode from what you give it: a shared page or URL means **Clone**;
-a description with no page means **Prompt**.
-
-### Prompt Mode: say what you want
-
-**Use it when** there is no page to copy: a new component, a screen that does not exist yet,
-or a quick concept to show your team. You do not need to share a browser page or a URL.
-
-```markdown
-/prototyper I want a dark-themed pricing card with a monthly/yearly toggle.
-```
-
-1. Prototyper reads your description and designs a complete, responsive layout with interactions.
-2. It writes `prototype/pricing-card/` and opens the preview.
-3. You review, ask for changes, then approve.
-
-**You get** a standalone, interactive prototype in its own folder.
-**Keep in mind:** there is no page to compare against, so the result reflects your description.
-Be specific about content, states and interactions.
-
-### Clone Mode: replicate a page you already have
-
-**Use it when** you want to redesign, rebuild or experiment on an existing screen and need a faithful starting point.
-Share a page you have open in your agent's integrated browser, or give a URL and the agent opens it with a browser tool such as the Playwright MCP server.
-
-```markdown
-/prototyper create a prototype for the page I have shared in the browser.
-```
-
-1. Prototyper reads the live page: DOM, styles, SVGs and asset URLs. It does not work from a screenshot.
-2. It writes `prototype/agent-management-dashboard/` and opens it next to your page.
-3. It compares element positions, sizes and colors against your page and fixes differences.
-4. You review, ask for changes, then approve.
-
-See [a real run](#see-it-in-action) below.
-
-**You get** a standalone replica that looks like your page and behaves like it for the interactions you can see.
-**Keep in mind:** it replicates what is rendered when you share it. Other states need to be opened or requested,
-and the mode needs a browser tool, such as an integrated browser or a Playwright MCP server.
+**Clone Mode: start from a page you already have.** Share a page open in your agent's browser, or give a URL and the agent opens it with a browser tool such as the Playwright MCP server. Prototyper reads the live page (DOM, styles, SVGs, assets), not a screenshot, builds a replica, and compares element positions, sizes and colors with your page.
 
 | | Prompt Mode | Clone Mode |
 | --- | --- | --- |
@@ -133,47 +76,73 @@ and the mode needs a browser tool, such as an integrated browser or a Playwright
 | Best for | New components, concepts, early ideas | Redesign or rebuild what exists |
 | Output | `prototype/{name}/` (HTML, CSS, JS) | `prototype/{name}/` (HTML, CSS, JS) |
 
-Both modes share the same loop: preview, iterate, approve, and optionally finalize into `final/{name}/`.
+> *Prompt Mode has no page to compare against, so the result reflects your description. Be specific about content, states and interactions.*
 
-## See it in action
+### When you are happy
 
-**Watch a real run (Clone Mode).** From sharing a page to a checked prototype and a one-sentence change.
+Ask Prototyper to implement it. It **confirms the address with you first** (folder, name, route), then builds it in your project's own structure, for example a Blazor `.razor` component with scoped CSS. See [Implementing the prototype in your app](#implementing-the-prototype-in-your-app).
 
-![Clone Mode: a real run from a shared page to a checked, changed prototype](../../docs/prototyper/images/clone-mode-demo.gif)
+- **Use it when** you want to explore, redesign or rebuild a page, build a new component from a description, or show a change before building it.
+- **Skip it when** the change is a one-line style tweak or has no UI.
 
-**The result.** The left side is the page shared with the agent. The right side is the prototype Prototyper created.
+Prototyper is an agent skill, so it works in any AI agent that supports skills.
 
-![Before and after: the shared page and the prototype Prototyper created](../../docs/prototyper/images/before-after.png)
+</details>
 
-**Ask for a change.** One plain-language request updates only the files that need to change.
+<details open>
+<summary><h2>Get started in four steps</h2></summary>
 
-![Before and after a change request: the Send button goes from purple to blue](../../docs/prototyper/images/change-it.png)
-
-*The images come from a real run. Private details are replaced with placeholders, and the chat and code panels in the video are redrawn from the real text for clarity.*
-
-## Key features
-
-| Feature | What it does for you |
-| --- | --- |
-| **Prompt Mode** | Builds a complete interactive UI from a description. No shared page or URL needed |
-| **Clone Mode** | Rebuilds a shared page or URL from its real DOM, styles and assets, not from a screenshot |
-| **Self-checking** | In Clone Mode, compares element positions, sizes and colors with your page and fixes mismatches before showing you |
-| **Isolated output** | Every prototype gets its own folder under `prototype/`. Your app files are never touched |
-| **Iterate by conversation** | Ask for changes in plain language. Only the files that need to change are updated |
-| **Finalize on request** | Produces a cleaned, accessible version in `final/` |
-| **Implement in your stack** | After you approve, confirms the address with you and builds the prototype as a real component in your project, such as a Blazor `.razor` component |
-| **No framework lock-in** | Plain HTML5, CSS3 and ES6 JavaScript. No build tools |
-| **Your design system** | Uses the CrystaCode design tokens by default. Ask it to use your own instead |
-
-## Installation
+### 1. Install
 
 ```bash
 npx skills add CrystaCode/crystacode-toolbox --skill prototyper
 ```
 
-`prototyper` is one skill in the CrystaCode toolbox, so `--skill prototyper` installs just this one. Choose the agent or agents to install it on when prompted.
+Choose the agent or agents to install it on when prompted. Then open your agent chat and type `/prototyper`. The skill should appear in the list.
 
-**Check it worked:** open your agent chat and type `/prototyper`. The skill should appear in the list.
+### 2. Run it
+
+Type `/prototyper` followed by what you want, in plain language:
+
+```markdown
+/prototyper a login page with email, password and a Sign in button
+```
+
+A prototype appears in `prototype/login-page/`. Open `login-page.html` in a browser.
+
+### 3. Change it
+
+Reply in plain language. No commands to learn:
+
+```text
+Move the button next to "Forgot password".
+Show the error state.
+Make it dark.
+```
+
+### 4. Implement it when you are ready
+
+```text
+Looks great. Implement it in our project.
+```
+
+Prototyper asks where it should live, waits for your yes, and builds it in your stack.
+
+### More ways to run it
+
+```markdown
+/prototyper create a prototype for the page I have shared in the browser.
+/prototyper create a prototype for https://example.com/admin/agents
+/prototyper I want a settings page. Use our design system: Inter font, 8px spacing, brand color #0a66c2.
+```
+
+**Finalize:** *"Looks good. Please finalize it."* The cleaned files land in `final/<name>/`.
+
+### Requirements
+
+- An AI agent that supports skills.
+- **Prompt Mode:** nothing else.
+- **Clone Mode:** a browser tool the agent can use to open and inspect the page: an integrated browser with page sharing, or a Playwright MCP server for opening a URL.
 
 <details>
 <summary>Other install options</summary>
@@ -196,60 +165,10 @@ cp -r skills/prototyper .agents/skills/
 
 </details>
 
-### Requirements
+</details>
 
-- An AI agent that supports skills.
-- **Prompt Mode:** nothing else.
-- **Clone Mode:** a browser tool the agent can use to open and inspect the page: an integrated browser with page sharing, or a Playwright MCP server for opening a URL.
-
-## Usage
-
-Type `/prototyper` followed by what you want, in plain language.
-
-**Describe a UI:**
-
-```markdown
-/prototyper I want a dark-themed pricing card with a monthly/yearly toggle.
-```
-
-**Clone the page you have open:**
-
-```markdown
-/prototyper create a prototype for the page I have shared in the browser.
-```
-
-**Clone a URL:**
-
-```markdown
-/prototyper create a prototype for https://example.com/admin/agents
-```
-
-**Iterate:** reply in plain language, for example *"Make the 'Most Popular' card glow."*
-
-**Finalize:** *"Looks good. Please finalize it."* The cleaned files land in `final/<name>/`.
-
-**Implement in your project:** *"Looks good. Implement it in our project."* Prototyper confirms the address with you, then builds it in your project's structure.
-
-**Use your own design system:** add it to the request, for example *"Use our design system: Inter font, our color palette, 8px spacing."*
-
-## What you get
-
-```text
-prototype/<name>/     # the prototype you review and iterate on
-├── <name>.html
-├── <name>.css
-└── <name>.js
-
-final/<name>/         # only after you approve: cleaned and accessible
-└── (same three files)
-```
-
-`prototype/` is a sandbox. `final/` is the same UI with production CSS, modular JavaScript and
-accessibility improvements. Both are standalone: open the `.html` file in a browser.
-
-When you ask Prototyper to implement it, the component lands in your project at the address you confirmed, in your stack's structure. See [Implementing the prototype](#implementing-the-prototype-in-your-app).
-
-## Implementing the prototype in your app
+<details open>
+<summary><h2>Implementing the prototype in your app</h2></summary>
 
 Your app is not touched while you iterate. When you are happy, ask Prototyper to implement the prototype:
 
@@ -280,6 +199,68 @@ Tips for a good result:
 - **Name your conventions.** Mention your component library or design system, or point to one existing component to follow.
 - **Provide the real data source.** Sample data stays as marked placeholder data until you say which API or service to use.
 - **Work on a branch.** It keeps the change easy to review or discard.
+
+</details>
+
+<details>
+<summary><h2>Reference: how it works, a real run, implementing, FAQ</h2></summary>
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Describe the UI or share a page] --> B[Ask for a prototype]
+    B --> C[Prototyper writes prototype/Name/ with HTML, CSS, JS]
+    C --> D[Preview opens]
+    D --> E{Happy?}
+    E -- Change something --> C
+    E -- Approve --> F[Confirm the address, then implement it in your project]
+```
+
+1. **Start.** Describe the UI you want, or share a page you already have open.
+2. **Ask for a prototype.** Type `/prototyper` followed by what you want, in plain language.
+3. **Prototyper builds it.** Three plain files appear in a new, meaningfully named folder under `prototype/`.
+4. **Review and iterate.** Preview it, ask for changes in plain language, repeat.
+5. **Implement it.** When you approve, ask Prototyper to implement it in your project. It confirms where it should go, then builds it in your stack (for example a Blazor component). See [Implementing the prototype](#implementing-the-prototype-in-your-app).
+
+## Clone Mode in a real run
+
+**Use it when** you want to redesign, rebuild or experiment on an existing screen and need a faithful starting point.
+Share a page you have open in your agent's integrated browser, or give a URL and the agent opens it with a browser tool such as the Playwright MCP server.
+
+```markdown
+/prototyper create a prototype for the page I have shared in the browser.
+```
+
+1. Prototyper reads the live page: DOM, styles, SVGs and asset URLs. It does not work from a screenshot.
+2. It writes `prototype/agent-management-dashboard/` and opens it next to your page.
+3. It compares element positions, sizes and colors against your page and fixes differences.
+4. You review, ask for changes, then approve.
+
+**You get** a standalone replica that looks like your page and behaves like it for the interactions you can see.
+**Keep in mind:** it replicates what is rendered when you share it. Other states need to be opened or requested,
+and the mode needs a browser tool, such as an integrated browser or a Playwright MCP server.
+
+![Clone Mode in a real run: a shared page, the generated prototype, a check against the page and a one-sentence change](../../docs/prototyper/images/clone-mode-demo.gif)
+
+*A real Clone Mode run. The chat and code panels are redrawn from the real text for clarity, and private details are removed.*
+
+## What you get
+
+```text
+prototype/<name>/     # the prototype you review and iterate on
+├── <name>.html
+├── <name>.css
+└── <name>.js
+
+final/<name>/         # only after you approve: cleaned and accessible
+└── (same three files)
+```
+
+`prototype/` is a sandbox. `final/` is the same UI with production CSS, modular JavaScript and
+accessibility improvements. Both are standalone: open the `.html` file in a browser.
+
+When you ask Prototyper to implement it, the component lands in your project at the address you confirmed, in your stack's structure. See [Implementing the prototype](#implementing-the-prototype-in-your-app).
 
 ## Best practices
 
@@ -313,6 +294,8 @@ Tips for a good result:
 **Can I use my own design system?** Yes. The CrystaCode tokens are a default; tell Prototyper to use yours.
 
 **Why generate a prototype first?** It lets you and your team review the result instead of the diff, and costs nothing to throw away.
+
+</details>
 
 ## Contributing
 
