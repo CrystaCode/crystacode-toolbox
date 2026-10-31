@@ -7,7 +7,7 @@ The complete prototype lifecycle. Follow the steps in order — do not skip the 
 - If a page is open/shared in the integrated browser (or a URL is provided) → follow [BROWSER-CLONE-MODE.md](BROWSER-CLONE-MODE.md).
 - Otherwise → follow [PROMPT-MODE.md](PROMPT-MODE.md).
 
-After generating the files, **always trigger the preview system** immediately:
+After generating the files, **trigger the preview system** immediately (if no preview is available, tell the user to open the `.html` file in a browser):
 
 ```markdown
 @preview
@@ -19,6 +19,8 @@ js: "prototype/{component_name}/{component_name}.js"
 ## Step 2: Mandatory live visual & automated element diff loop (Browser Clone Mode only)
 
 You **MUST run an automated element-by-element diff and visual comparison loop until the prototype is 100% identical to the shared page**. DO NOT proceed to Step 3 or tell the user it is done if any component is missing, misaligned, or styled differently.
+
+The tool names below are those of the integrated browser. With another browser tool (such as a Playwright MCP server), use its equivalents.
 
 1. **Open the generated prototype**: call `open_browser_page(url: "file:///{absolute_path_to_html}")` to load it in the integrated browser.
 2. **Screenshot BOTH pages**: call `screenshot_page(pageId: sharedPageId)` on the original shared tab and `screenshot_page(pageId: prototypePageId)` on the prototype tab.
@@ -90,3 +92,14 @@ Output:
 - `final/{component_name}/{component_name}.html`
 - `final/{component_name}/{component_name}.css`
 - `final/{component_name}/{component_name}.js`
+
+When the files are ready, tell the user and ask whether they want it implemented in their project. Do not implement without that request.
+
+## Step 6: Implement in the project (only when the user asks)
+
+When the user approves implementing the prototype in their project, follow [IMPLEMENT.md](IMPLEMENT.md):
+
+1. **Confirm the implementation address** (folder, component name, route) with the user and wait for their confirmation. Do not touch the project before this.
+2. **Learn the project's structure**: detect the stack and read one or two similar existing components for conventions.
+3. **Convert the final files into the project's own structure**, for example a Blazor `.razor` component with scoped CSS for a Blazor project, using the project's design system.
+4. **Verify and report**: run the project's build and checks, compare with the approved prototype, and list what changed.

@@ -6,17 +6,17 @@ Applies when NO browser page or URL is shared. The skill designs and builds the 
 
 1. **Review the input**: read the user's description, requirements, and requested features carefully.
 2. **Structure a clean UI layout** from scratch, incorporating responsive design and intuitive interaction patterns.
-3. **Apply the CrystaCode design standards** defined in [DESIGN-TOKENS.md](DESIGN-TOKENS.md): `1rem = 10px` root scaling, typography shorthand tokens, `--crysta-*` color tokens, tokenized radii and shadows.
+3. **Apply a design system.** Use the user's own design system if they supplied or named one. Otherwise apply the CrystaCode defaults in [DESIGN-TOKENS.md](DESIGN-TOKENS.md): `1rem = 10px` root scaling, typography shorthand tokens, `--crysta-*` color tokens, tokenized radii and shadows.
 
 ## File creation
 
-Create a dedicated folder `prototype/{component_name}/` and place the files inside:
+Prompt Mode needs no browser page or URL. Use the `component_name` the user gave, or derive a short descriptive kebab-case name and tell the user. Create a dedicated folder `prototype/{component_name}/` and place the files inside:
 
 - `prototype/{component_name}/{component_name}.html`
 - `prototype/{component_name}/{component_name}.css`
 - `prototype/{component_name}/{component_name}.js`
 
-After generating the files, **always trigger the preview system** immediately (see [WORKFLOW.md](WORKFLOW.md) Step 1), then continue with the approval loop.
+After generating the files, **trigger the preview system** immediately (see [WORKFLOW.md](WORKFLOW.md) Step 1). If no preview is available, tell the user to open the `.html` file in a browser. Then continue with the approval loop.
 
 ## Quality bar
 
