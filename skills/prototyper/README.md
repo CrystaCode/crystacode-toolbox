@@ -7,61 +7,59 @@
 [![skills.sh](https://skills.sh/b/CrystaCode/crystacode-toolbox/prototyper)](https://skills.sh/CrystaCode/crystacode-toolbox/prototyper)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[The problem](#a-tiny-ui-question-should-not-cost-a-whole-app) · [The fix](#a-prototype-lane-next-to-your-app) · [Get started](#get-started-in-four-steps)
+[The fix](#a-prototype-lane-next-to-your-app) · [The problem](#a-tiny-ui-question-should-not-cost-a-whole-app) · [Two ways to start](#two-ways-to-start) · [Get started](#get-started-in-four-steps)
 
 </div>
 
 <details open>
-<summary><h2>A tiny UI question should not cost a whole app</h2></summary>
-
-Take the simplest page you own: a **login page**. You want to see it a few different ways. The button in another spot. An inline error instead of a pop-up. A darker style. Four or five variations, side by side.
-
-That is a ten-minute question. In a real app, it rarely is.
-
-### What it actually takes
-
-- **Full-stack overhead.** To look at one error state you open the component, its styles, the form logic and the routing. You wire up fake auth responses, mock routes or seed data, just to make the page fail on purpose. A missing dependency or a framework quirk can turn a color check into an afternoon.
-- **Tokens burned on trivial tweaks.** Ask an AI agent to move a button and it reads, searches and edits across your whole stack. You pay for a lot of context that has nothing to do with the question, and then you ask for variation number two.
-- **Slow loops.** Every variation waits on a rebuild or a reload, and then you walk the flow again: open the page, sign in wrong on purpose, look, go back. Repeat for every idea.
-- **A diff to review and a mess to undo.** Variation three was the winner, so now you revert the other two.
-
-### You have felt this
-
-If you have ever opened a project to nudge one button and closed it an hour later with a half-built mock API, you know exactly what this is. You were not trying to build a feature. You were trying to **look at** one.
-
-The slow part was never the design. It was everything around it.
-
-</details>
-
-<details open>
 <summary><h2>A prototype lane next to your app</h2></summary>
 
-**Prototyper** is a lightweight prototyping skill for your AI coding agent. Describe a UI, or share a page you already have, and it builds the UI as three small, standalone files (HTML, CSS and JavaScript) in their own folder, outside your app. Open the file in a browser, ask for changes in plain language, and compare variations without a build, a route or a mock in sight.
+**Prototyper** is a lightweight prototyping skill for your AI coding agent. Describe a UI, or share a page you already have, and it builds the UI as three small, standalone files (HTML, CSS and JavaScript) in their own folder, outside your app. Open the file in a browser, ask for changes in plain language, and compare variations without a build, a route or a mock in sight. Prototyper is an agent skill, so it works in any AI agent that supports skills.
 
 ![Clone Mode: click Share with Agent in the editor's browser, run /prototyper, and get a prototype of the shared login page next to the untouched original](../../docs/prototyper/images/login-clone-demo.gif)
 
 *Click Share with Agent in the editor's browser, run `/prototyper`, and the agent clones the page you shared. Changes go to the prototype only; your app stays untouched. An illustration built from a real login prototype, not a screen recording.*
 
+- **Use it when** you want to explore, redesign or rebuild a page, build a new component from a description, or show a change before building it.
+- **Skip it when** the change is a one-line style tweak or has no UI.
+
 ### The difference
 
 | | Changing the real app | With Prototyper |
 | --- | --- | --- |
-| What the agent touches | Components, styles, state, routes, mock data | One folder with three small files |
-| Token use | High: it reads and edits across the stack for every tweak | Much lower: it reads and rewrites three small files |
-| Iteration speed | Rebuild or reload the app, then re-walk the flow | Near-instant: reload one HTML file |
-| Risk | Changes land in your codebase and may need reverting | Nothing in your app changes until you ask |
+| What the agent touches | ❌ Components, styles, state, routes, mock data | ✅ One folder with three small files |
+| Token use | ❌ High: it reads and edits across the stack for every tweak | ✅ Much lower: it reads and rewrites three small files |
+| Iteration speed | ❌ Rebuild or reload the app, then re-walk the flow | ✅ Near-instant: reload one HTML file |
+| Risk | ❌ Changes land in your codebase and may need reverting | ✅ Nothing in your app changes until you ask |
 
 > *A relative comparison of what the agent has to read, edit and wait for, not a benchmark. Actual savings depend on your project and agent.*
 
-![Direct edit versus prototype first: review the idea before you review the diff](../../docs/prototyper/images/11-before-after-workflow.png)
+![Example: changing one login button by telling the agent directly takes 40 edited files, 5 build runs, 40,000 tokens and 5 minutes; with Prototyper it takes 3 files, no builds, 300 tokens and 20 seconds](../../docs/prototyper/images/11-before-after-workflow.png)
 
-### The login page, again
+> *The numbers in this diagram come from one example scenario and are rounded. They are not a benchmark. Your results depend on your project and agent.*
 
-Every variation below is one plain-language request, and every one lives in the same three files.
+</details>
+
+<details open>
+<summary><h2>A tiny UI question should not cost a whole app</h2></summary>
+
+Take the simplest page you own: a **login page**. You want to see it a few different ways: the button in another spot, an inline error instead of a pop-up, a darker style. That is a ten-minute question. In a real app, it rarely is, because every variation means opening components, styles, form logic and routing, faking a failing sign-in, waiting on rebuilds, and reverting the options you did not pick.
+
+If you have ever opened a project to nudge one button and closed it an hour later with a half-built mock API, you know the feeling. You were not trying to build a feature. You were trying to **look at** one. The slow part was never the design. It was everything around it.
+
+</details>
+
+<details open>
+<summary><h2>One login page, five variations</h2></summary>
+
+Back to the login page. With Prototyper, every variation is one plain-language request, and every one lives in the same three files.
 
 ![One login page and five variations: button placement, error state and two styling changes, each requested in a single sentence](../../docs/prototyper/images/login-variations.png)
 
-### Two ways to start
+</details>
+
+<details open>
+<summary><h2>Two ways to start</h2></summary>
 
 **Prompt Mode: say what you want.** There is no page to copy: a new component, a screen that does not exist yet, a quick concept for your team. You do not need to share a page or a URL.
 
@@ -77,15 +75,6 @@ Every variation below is one plain-language request, and every one lives in the 
 | Output | `prototype/{name}/` (HTML, CSS, JS) | `prototype/{name}/` (HTML, CSS, JS) |
 
 > *Prompt Mode has no page to compare against, so the result reflects your description. Be specific about content, states and interactions.*
-
-### When you are happy
-
-Ask Prototyper to implement it. It **confirms the address with you first** (folder, name, route), then builds it in your project's own structure, for example a Blazor `.razor` component with scoped CSS. See [Implementing the prototype in your app](#implementing-the-prototype-in-your-app).
-
-- **Use it when** you want to explore, redesign or rebuild a page, build a new component from a description, or show a change before building it.
-- **Skip it when** the change is a one-line style tweak or has no UI.
-
-Prototyper is an agent skill, so it works in any AI agent that supports skills.
 
 </details>
 
@@ -126,7 +115,9 @@ Make it dark.
 Looks great. Implement it in our project.
 ```
 
-Prototyper asks where it should live, waits for your yes, and builds it in your stack.
+Prototyper asks where it should live, waits for your yes, and builds it in your stack. See [Implementing the prototype in your app](#implementing-the-prototype-in-your-app).
+
+**Implement or finalize?** *Implement* puts the result in your project, in your stack's structure. *Finalize* is for standalone files: say *"Looks good. Please finalize it."* and cleaned, accessible HTML, CSS and JS land in `final/<name>/`.
 
 ### More ways to run it
 
@@ -135,8 +126,6 @@ Prototyper asks where it should live, waits for your yes, and builds it in your 
 /prototyper create a prototype for https://example.com/admin/agents
 /prototyper I want a settings page. Use our design system: Inter font, 8px spacing, brand color #0a66c2.
 ```
-
-**Finalize:** *"Looks good. Please finalize it."* The cleaned files land in `final/<name>/`.
 
 ### Requirements
 
@@ -167,7 +156,7 @@ cp -r skills/prototyper .agents/skills/
 
 </details>
 
-<details open>
+<details>
 <summary><h2>Implementing the prototype in your app</h2></summary>
 
 Your app is not touched while you iterate. When you are happy, ask Prototyper to implement the prototype:
@@ -203,7 +192,7 @@ Tips for a good result:
 </details>
 
 <details>
-<summary><h2>Reference: how it works, a real run, implementing, FAQ</h2></summary>
+<summary><h2>Reference: how it works, Clone Mode, what you get, FAQ</h2></summary>
 
 ## How it works
 
@@ -223,7 +212,7 @@ flowchart LR
 4. **Review and iterate.** Preview it, ask for changes in plain language, repeat.
 5. **Implement it.** When you approve, ask Prototyper to implement it in your project. It confirms where it should go, then builds it in your stack (for example a Blazor component). See [Implementing the prototype](#implementing-the-prototype-in-your-app).
 
-## Clone Mode in a real run
+## Clone Mode step by step
 
 **Use it when** you want to redesign, rebuild or experiment on an existing screen and need a faithful starting point.
 Share a page you have open in your agent's integrated browser, or give a URL and the agent opens it with a browser tool such as the Playwright MCP server.
@@ -240,10 +229,6 @@ Share a page you have open in your agent's integrated browser, or give a URL and
 **You get** a standalone replica that looks like your page and behaves like it for the interactions you can see.
 **Keep in mind:** it replicates what is rendered when you share it. Other states need to be opened or requested,
 and the mode needs a browser tool, such as an integrated browser or a Playwright MCP server.
-
-![Clone Mode in a real run: a shared page, the generated prototype, a check against the page and a one-sentence change](../../docs/prototyper/images/clone-mode-demo.gif)
-
-*A real Clone Mode run. The chat and code panels are redrawn from the real text for clarity, and private details are removed.*
 
 ## What you get
 
@@ -277,7 +262,7 @@ When you ask Prototyper to implement it, the component lands in your project at 
 - Pages behind a login need to be open in your session and shared.
 - Images and fonts may still load from the original page's URLs, so a clone can depend on the original site being reachable.
 - The comparison checks element position, size, color, display and position. Fonts, shadows and animation are reviewed by eye.
-- By default, output uses the CrystaCode design tokens. Ask for your own design system to replace them.
+- In Prompt Mode, the look comes from the first design source it finds: the design system you name, a design skill already installed in your agent, your project's design system, or a clean structured default.
 - Each run starts fresh and does not reuse earlier prototypes, by design.
 - Implementation follows what your project already uses. Prototyper does not add new frameworks or libraries, and it connects real data only when you name the source.
 
@@ -291,7 +276,7 @@ When you ask Prototyper to implement it, the component lands in your project at 
 
 **Do I need to share a page or a URL?** Not in Prompt Mode, which works from a description alone. In Clone Mode, either share a page you have open or give a URL. The agent opens the URL with a browser tool such as the Playwright MCP server and clones it.
 
-**Can I use my own design system?** Yes. The CrystaCode tokens are a default; tell Prototyper to use yours.
+**Which design does Prompt Mode use?** It checks, in order: a design system you name in your request, a design skill already installed in your agent's skills folders, your project's own design system (tokens, theme files, shared components) if it can read the project, and otherwise a clean, well-structured UI. It tells you which one it used.
 
 **Why generate a prototype first?** It lets you and your team review the result instead of the diff, and costs nothing to throw away.
 

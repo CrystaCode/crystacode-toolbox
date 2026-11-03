@@ -19,7 +19,7 @@ Thanks for helping improve the CrystaCode toolbox. This guide covers how to chan
 
 - Keep `SKILL.md` lean. Put detailed instructions in reference `.md` files and link to them, so the skill stays fast to load.
 - Every skill must keep valid frontmatter: `name` (lowercase kebab-case, matching the folder name) and `description` (third person, rich in trigger phrases).
-- Follow the existing conventions in `skills/prototyper/DESIGN-TOKENS.md` when changing Prototyper's styling rules.
+- Prompt Mode's design source order lives in `skills/prototyper/PROMPT-MODE.md`; Browser Clone Mode's fidelity rules live in `skills/prototyper/BROWSER-CLONE-MODE.md`.
 - README images for a skill live in `docs/<skill>/images/`, outside the skill folder so they are not copied into users' installs. For Prototyper, see [`docs/prototyper/CAPTURE-GUIDE.md`](docs/prototyper/CAPTURE-GUIDE.md) for how the visuals are made and the standards to follow.
 
 ## Versioning and releases

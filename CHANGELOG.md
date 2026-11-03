@@ -16,7 +16,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versioning: [S
 
 ### Changed
 
-- `prototyper`: CrystaCode design tokens are a default, not mandatory; users can supply their own design system.
+- `prototyper`: removed `DESIGN-TOKENS.md`. Prompt Mode picks a design source in order: the user's named design system, a design skill already installed in the agent's skills folders, the project's design system when accessible, otherwise a clean, well-structured UI. Browser Clone Mode uses the shared page's own values.
 - `prototyper`: `component_name` is optional; the skill derives a descriptive kebab-case name when none is given.
 - `prototyper`: invocation is `/prototyper` followed by a plain-language request.
 - `prototyper`: Browser Clone Mode fidelity to the shared page takes priority over default tokens; Prompt Mode needs no browser and falls back to opening the HTML file when no preview is available.
