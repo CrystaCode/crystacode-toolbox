@@ -16,7 +16,7 @@
 
 **Prototyper** is a lightweight prototyping skill for your AI coding agent. Describe a UI, or share a page you already have, and it builds the UI as three small, standalone files (HTML, CSS and JavaScript) in their own folder, outside your app. Open the file in a browser, ask for changes in plain language, and compare variations without a build, a route or a mock in sight. Prototyper is an agent skill, so it works in any AI agent that supports skills.
 
-![Clone Mode: click Share with Agent in the editor's browser, run /prototyper, and get a prototype of the shared login page next to the untouched original](../../docs/prototyper/images/login-clone-demo.gif)
+![Clone Mode: click Share with Agent in the editor's browser, run /prototyper, and get a prototype of the shared login page next to the untouched original](https://github.com/user-attachments/assets/e0ce17c3-9991-4dbe-95c2-02dbd645ba9e)
 
 *Click Share with Agent in the editor's browser, run `/prototyper`, and the agent clones the page you shared. Changes go to the prototype only; your app stays untouched. An illustration built from a real login prototype, not a screen recording.*
 
@@ -34,7 +34,7 @@
 
 > *A relative comparison of what the agent has to read, edit and wait for, not a benchmark. Actual savings depend on your project and agent.*
 
-![Example: changing one login button by telling the agent directly takes 40 edited files, 5 build runs, 40,000 tokens and 5 minutes; with Prototyper it takes 3 files, no builds, 300 tokens and 20 seconds](../../docs/prototyper/images/11-before-after-workflow.png)
+![Example: changing one login button by telling the agent directly takes 40 edited files, 5 build runs, 40,000 tokens and 5 minutes; with Prototyper it takes 3 files, no builds, 300 tokens and 20 seconds](https://github.com/user-attachments/assets/eeef9fd8-144f-4504-8a00-5f3a99881c73)
 
 > *The numbers in this diagram come from one example scenario and are rounded. They are not a benchmark. Your results depend on your project and agent.*
 
@@ -54,7 +54,7 @@ If you have ever opened a project to nudge one button and closed it an hour late
 
 Back to the login page. With Prototyper, every variation is one plain-language request, and every one lives in the same three files.
 
-![One login page and five variations: button placement, error state and two styling changes, each requested in a single sentence](../../docs/prototyper/images/login-variations.png)
+![One login page and five variations: button placement, error state and two styling changes, each requested in a single sentence](https://github.com/user-attachments/assets/c372137b-a032-4efa-a7e0-b73b7db45ff5)
 
 </details>
 
