@@ -34,7 +34,7 @@
 
 > *A relative comparison of what the agent has to read, edit and wait for, not a benchmark. Actual savings depend on your project and agent.*
 
-![Example: changing one login button by telling the agent directly takes 40 edited files, 5 build runs, 40,000 tokens and 5 minutes; with Prototyper it takes 3 files, no builds, 300 tokens and 20 seconds](https://github.com/user-attachments/assets/eeef9fd8-144f-4504-8a00-5f3a99881c73)
+![Side by side: telling the agent to change your real app repeats an edit, build and fix cycle five times and takes 40,000 tokens and 5 minutes; with Prototyper, three login-prototype files are created in one pass with no builds or errors, 300 tokens and 20 seconds](https://github.com/user-attachments/assets/775d3dd7-b561-4aac-998f-83eb03ead92f)
 
 > *The numbers in this diagram come from one example scenario and are rounded. They are not a benchmark. Your results depend on your project and agent.*
 
