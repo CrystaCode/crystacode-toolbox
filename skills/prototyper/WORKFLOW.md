@@ -61,12 +61,20 @@ return page.evaluate(() => {
 
 ## Step 3: Present to user & wait for approval
 
-**ONLY AFTER** the diff loop is fully completed and visual parity is confirmed:
+**Browser Clone Mode.** **ONLY AFTER** the diff loop is fully completed and visual parity is confirmed:
 
 1. Trigger the `@preview` directive (same block as Step 1).
 2. Report the verified exact match to the user and ask:
 
 > I have iteratively taken screenshots of both your shared page and the prototype, compared them side by side, and refined the layout, positions, colors, and styles until they are an exact 1:1 match. Do you approve this prototype, or would you like to make any modifications?
+
+**Prompt Mode.** There is no shared page to compare against, so do not claim a comparison or a 1:1 match. A browser is not required:
+
+1. Trigger the `@preview` directive (same block as Step 1). If no preview is available, tell the user the folder and file name (`prototype/{component_name}/{component_name}.html`) and ask them to open it in a browser.
+2. If you have a browser tool, you may open the page and check that it renders without errors. Otherwise rely on the user's own review.
+3. Ask:
+
+> The prototype is ready in `prototype/{component_name}/`. Open it, then tell me what you would like to change, or approve it.
 
 ## Step 4: Apply modifications (interactive loop)
 
@@ -74,7 +82,8 @@ When the user requests modifications:
 
 1. Update **only the necessary parts** of the HTML, CSS, and JS files.
 2. Keep the updated files directly inside `prototype/{component_name}/`.
-3. Re-verify the changes in the browser and re-trigger the preview using the `@preview` directive.
+3. Re-verify the changes. In Browser Clone Mode, reload the prototype and re-run the diff loop from Step 2. In Prompt Mode, if you have a browser tool, reload and check that the change rendered; if you do not, re-trigger the preview, or tell the user which file changed and ask them to reload the `.html` file and confirm the result.
+4. Re-trigger the preview using the `@preview` directive.
 
 Repeat this loop until the user approves and asks to finalize.
 
