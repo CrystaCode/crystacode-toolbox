@@ -24,4 +24,6 @@ claude plugin install prototyper@crystacode-toolbox
 3. Run `node scripts/validate-skills.mjs` (CI runs it on every PR).
 4. Record changes in [CHANGELOG.md](CHANGELOG.md).
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide.
+
 Licensed under [MIT](LICENSE).

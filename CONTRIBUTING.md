@@ -1,0 +1,34 @@
+# Contributing
+
+Thanks for helping improve the CrystaCode toolbox. This guide covers how to change a skill, validate it, and record the change.
+
+## Development workflow
+
+1. Fork the repository and create a feature branch.
+2. Edit the skill in `skills/<name>/`. `SKILL.md` and its reference files are plain Markdown.
+3. Validate the frontmatter locally (no dependencies required):
+
+   ```bash
+   node scripts/validate-skills.mjs
+   ```
+
+4. Test the skill by installing it into a scratch project and running the example invocations in the skill's README.
+5. Open a pull request. CI runs the same validation automatically (`.github/workflows/validate.yml`).
+
+## Guidelines
+
+- Keep `SKILL.md` lean. Put detailed instructions in reference `.md` files and link to them, so the skill stays fast to load.
+- Every skill must keep valid frontmatter: `name` (lowercase kebab-case, matching the folder name) and `description` (third person, rich in trigger phrases).
+- Prompt Mode's design source order lives in `skills/prototyper/PROMPT-MODE.md`; Browser Clone Mode's fidelity rules live in `skills/prototyper/BROWSER-CLONE-MODE.md`.
+- README images and GIFs are hosted on GitHub, not in the repo: drag the file into a pull request description or comment, then use the generated `github.com/user-attachments/assets/...` link in the README. Keep them truthful (say when a visual is an illustration, not a screen recording), remove private details, and design them to stay readable at about 1000 px wide: build wide images at about 1600 px with at least 28 px caption text.
+
+## Versioning and releases
+
+- Record every change that affects behavior in [`CHANGELOG.md`](CHANGELOG.md), following [Keep a Changelog](https://keepachangelog.com).
+- Use [Semantic Versioning](https://semver.org): **MAJOR** for behavior-changing workflow rules, **MINOR** for new capabilities (new modes, new steps), **PATCH** for clarifications and fixes.
+
+## Distribution
+
+- The skills CLI installs directly from the public GitHub repository: `npx skills add CrystaCode/crystacode-toolbox --skill <name>`.
+- `.claude-plugin/marketplace.json` makes the repository installable as a Claude Code plugin. Keep the owner fields and plugin entries current.
+- The skills.sh listing links back to this repository; keep the repository description and topics accurate.

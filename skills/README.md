@@ -2,7 +2,7 @@ These are the skills published by CrystaCode
 
 | Skill | Description |
 | --- | --- |
-| [prototyper](prototyper/SKILL.md) | Pixel-perfect 1:1 browser clones and prompt-based HTML/CSS/JS prototypes, with live preview, iteration, and production-ready finalization. |
+| [prototyper](prototyper/README.md) | Pixel-perfect 1:1 browser clones and prompt-based HTML/CSS/JS prototypes, with live preview, iteration, and production-ready finalization. |
 
 ## Installation
 

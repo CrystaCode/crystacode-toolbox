@@ -7,7 +7,7 @@ The complete prototype lifecycle. Follow the steps in order — do not skip the 
 - If a page is open/shared in the integrated browser (or a URL is provided) → follow [BROWSER-CLONE-MODE.md](BROWSER-CLONE-MODE.md).
 - Otherwise → follow [PROMPT-MODE.md](PROMPT-MODE.md).
 
-After generating the files, **always trigger the preview system** immediately:
+After generating the files, **trigger the preview system** immediately (if no preview is available, tell the user to open the `.html` file in a browser):
 
 ```markdown
 @preview
@@ -19,6 +19,8 @@ js: "prototype/{component_name}/{component_name}.js"
 ## Step 2: Mandatory live visual & automated element diff loop (Browser Clone Mode only)
 
 You **MUST run an automated element-by-element diff and visual comparison loop until the prototype is 100% identical to the shared page**. DO NOT proceed to Step 3 or tell the user it is done if any component is missing, misaligned, or styled differently.
+
+The tool names below are those of the integrated browser. With another browser tool (such as a Playwright MCP server), use its equivalents.
 
 1. **Open the generated prototype**: call `open_browser_page(url: "file:///{absolute_path_to_html}")` to load it in the integrated browser.
 2. **Screenshot BOTH pages**: call `screenshot_page(pageId: sharedPageId)` on the original shared tab and `screenshot_page(pageId: prototypePageId)` on the prototype tab.
@@ -59,12 +61,20 @@ return page.evaluate(() => {
 
 ## Step 3: Present to user & wait for approval
 
-**ONLY AFTER** the diff loop is fully completed and visual parity is confirmed:
+**Browser Clone Mode.** **ONLY AFTER** the diff loop is fully completed and visual parity is confirmed:
 
 1. Trigger the `@preview` directive (same block as Step 1).
 2. Report the verified exact match to the user and ask:
 
 > I have iteratively taken screenshots of both your shared page and the prototype, compared them side by side, and refined the layout, positions, colors, and styles until they are an exact 1:1 match. Do you approve this prototype, or would you like to make any modifications?
+
+**Prompt Mode.** There is no shared page to compare against, so do not claim a comparison or a 1:1 match. A browser is not required:
+
+1. Trigger the `@preview` directive (same block as Step 1). If no preview is available, tell the user the folder and file name (`prototype/{component_name}/{component_name}.html`) and ask them to open it in a browser.
+2. If you have a browser tool, you may open the page and check that it renders without errors. Otherwise rely on the user's own review.
+3. Ask:
+
+> The prototype is ready in `prototype/{component_name}/`. Open it, then tell me what you would like to change, or approve it.
 
 ## Step 4: Apply modifications (interactive loop)
 
@@ -72,7 +82,8 @@ When the user requests modifications:
 
 1. Update **only the necessary parts** of the HTML, CSS, and JS files.
 2. Keep the updated files directly inside `prototype/{component_name}/`.
-3. Re-verify the changes in the browser and re-trigger the preview using the `@preview` directive.
+3. Re-verify the changes. In Browser Clone Mode, reload the prototype and re-run the diff loop from Step 2. In Prompt Mode, if you have a browser tool, reload and check that the change rendered; if you do not, re-trigger the preview, or tell the user which file changed and ask them to reload the `.html` file and confirm the result.
+4. Re-trigger the preview using the `@preview` directive.
 
 Repeat this loop until the user approves and asks to finalize.
 
@@ -90,3 +101,14 @@ Output:
 - `final/{component_name}/{component_name}.html`
 - `final/{component_name}/{component_name}.css`
 - `final/{component_name}/{component_name}.js`
+
+When the files are ready, tell the user and ask whether they want it implemented in their project. Do not implement without that request.
+
+## Step 6: Implement in the project (only when the user asks)
+
+When the user approves implementing the prototype in their project, follow [IMPLEMENT.md](IMPLEMENT.md):
+
+1. **Confirm the implementation address** (folder, component name, route) with the user and wait for their confirmation. Do not touch the project before this.
+2. **Learn the project's structure**: detect the stack and read one or two similar existing components for conventions.
+3. **Convert the final files into the project's own structure**, for example a Blazor `.razor` component with scoped CSS for a Blazor project, using the project's design system.
+4. **Verify and report**: run the project's build and checks, compare with the approved prototype, and list what changed.

@@ -1,6 +1,6 @@
 # Browser Clone Mode (Exact 1:1 Replica — Absolute Mandate)
 
-Applies when a page is opened/shared in the integrated browser, or a URL is provided (a bare URL is loaded with the Playwright MCP — see below).
+Applies when a page is opened/shared in the integrated browser, or a URL is provided (a bare URL is loaded with the Playwright MCP or another available browser tool — see below).
 
 ## The 1:1 mandate
 
@@ -73,7 +73,9 @@ Also call `screenshot_page(pageId: sharedPageId)` to retain the visual reference
 ## Step 2: Assemble the complete 1:1 prototype
 
 - **`{component_name}.html`**: embed the extracted `<head>` styles and font links; include the exact body structure, SVG icons, cards, headers, buttons, badges, overlays, and floating components; link `{component_name}.css` and `{component_name}.js`.
-- **`{component_name}.css`**: set `:root` design tokens (see [DESIGN-TOKENS.md](DESIGN-TOKENS.md)); include all layout positioning (centering, absolute offsets, margins, paddings, shadows, glow effects).
+- **`{component_name}.css`**: set `:root` custom properties for the page's exact colors, fonts, spacing, radii and shadows, with descriptive names; include all layout positioning (centering, absolute offsets, margins, paddings, shadows, glow effects).
 - **`{component_name}.js`**: implement interactive triggers (toggles, modal opens/closes, button states).
 
 Then continue with the mandatory diff loop defined in [WORKFLOW.md](WORKFLOW.md) Step 2.
+
+Fidelity wins: use the page's exact values, whatever they are; no default tokens or design system is applied. Put extracted styles in `{component_name}.css` where practical; keep scripts out of the HTML.
